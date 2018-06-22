@@ -3,38 +3,18 @@ PATH
   specs:
     cass_client_ruby (0.0.0)
       dotenv
-      faraday
-      rest-client (~> 2.0.2, >= 2.0.2)
 
 GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.1)
-    domain_name (0.5.20180417)
-      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
-    faraday (0.15.2)
-      multipart-post (>= 1.2, < 3)
-    http-cookie (1.0.3)
-      domain_name (~> 0.5)
     method_source (0.8.2)
-    mime-types (3.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
-    multipart-post (2.0.0)
-    netrc (0.11.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rest-client (2.0.2)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
     slop (3.6.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.5)
 
 PLATFORMS
   ruby
@@ -44,4 +24,4 @@ DEPENDENCIES
   pry
 
 BUNDLED WITH
-   1.14.6
+   1.15.3
