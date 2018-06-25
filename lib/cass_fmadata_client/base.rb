@@ -29,11 +29,16 @@ module CassClient
 
     private
 
-    def send_request(p, url)
+    def prepare_url(p, url)
       uri = URI.parse(url)
 
       #Add params to URI
       uri.query = URI.encode_www_form(p)
+      uri
+    end
+
+    def send_request(p, url)
+      uri = prepare_url(p, url)
 
       request = Net::HTTP::Get.new(uri)
       request["Token"] = @token
