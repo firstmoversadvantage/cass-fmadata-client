@@ -1,8 +1,10 @@
 require 'minitest/autorun'
+require 'minitest/spec'
+
 require 'cass_fmadata_client'
 require 'pry'
 require 'dotenv/load'
-require 'webmock/rspec'
+require 'webmock'
 include WebMock::API
 WebMock.disable_net_connect!(:allow_localhost => true)
 
