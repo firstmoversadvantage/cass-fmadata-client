@@ -29,23 +29,15 @@ module CassClient
 
     private
 
-    def prepare_url(p, url)
+    def send_request(p, url)
       uri = URI.parse(url)
 
-      #Add params to URI
-      uri.query = URI.encode_www_form(p)
-      uri
-    end
-
-    def send_request(p, url)
-      uri = prepare_url(p, url)
-
-      request = Net::HTTP::Get.new(uri)
-      request["Token"] = @token
-
-      Net::HTTP.start(uri.hostname, uri.port) do |http|
-        http.request(request)
-      end
+      query_url = "#{uri.path}?".concat(p.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&'))
+      req = Net::HTTP::Get.new(query_url)
+      req["Token"] = @token
+      res = Net::HTTP.start(uri.host, uri.port) { |http|
+        http.request(req)
+       }
     end
 
     def tiger_url
