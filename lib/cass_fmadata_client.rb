@@ -5,6 +5,6 @@ require 'cass_fmadata_client/base'
 require 'net/http'
 require 'json'
 
-module Cass
+module Casss
   class Client < CassClient::Base; end
 end
