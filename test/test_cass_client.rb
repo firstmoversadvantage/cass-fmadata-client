@@ -1,14 +1,16 @@
 require 'minitest/autorun'
+require 'minitest/spec'
+require 'dotenv'
+Dotenv.load
 require 'cass_fmadata_client'
 require 'pry'
-require 'dotenv/load'
-require 'webmock/rspec'
+require 'webmock'
 include WebMock::API
 WebMock.disable_net_connect!(allow_localhost: true)
 
 class CassClientTest < Minitest::Test
   def test_initialize_cass_client
-    Cass::Client.new(host:  ENV['CASS_URL'],
+    Casss::Client.new(host:  ENV['CASS_URL'],
                      token: ENV['CASS_TOKEN'])
   end
 

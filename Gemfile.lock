@@ -1,29 +1,29 @@
 PATH
   remote: .
   specs:
-    cass_client_ruby (0.0.0)
+    cass-fmadata-client (0.0.1)
       dotenv
       webmock
 
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.1)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     coderay (1.1.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    dotenv (2.2.1)
-    hashdiff (0.3.4)
+    dotenv (2.5.0)
+    hashdiff (0.3.7)
     method_source (0.8.2)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    public_suffix (2.0.5)
+    public_suffix (3.0.2)
     safe_yaml (1.0.4)
     slop (3.6.0)
-    webmock (3.0.1)
+    webmock (3.4.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -32,7 +32,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cass_client_ruby!
+  cass-fmadata-client!
   pry
 
 BUNDLED WITH
