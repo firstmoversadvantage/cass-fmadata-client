@@ -23,8 +23,8 @@ gem 'cass-fmadata-client', '0.0.5',
 From your application set up connection:
 
 ```ruby
-@cass ||= Casss::Client.new(host:  host,
-                            token: token)
+cass = Casss::Client.new(host:  host,
+                         token: token)
 ```
 
 # Usage
@@ -32,9 +32,9 @@ From your application set up connection:
 ## Tiger method
 
 ```ruby
-response = cass.tiger options
+response = cass.tiger params
 
-JSON.parse(response.body)
+parsed_response = JSON.parse(response.body)
 ```
 
 ### Example
@@ -44,39 +44,58 @@ response = cass.tiger(street_address: '1035 Pearl St Ste 323',
                       city: 'Boulder',
                       state: 'CO',
                       zip: '80302')
+
+JSON.parse(response.body) => {"address_type"=>"H",
+                              "census_block"=>"3035",
+                              "census_tract"=>"012204",
+                              "street_address"=>"1035 Pearl St # 323",
+                              "city"=>"Boulder",
+                              "state"=>"CO",
+                              "zip_9"=>"80302-5130",
+                              "search_key"=>"80302513099#323",
+                              "county_name"=>"Boulder",
+                              "county_number"=>"013",
+                              "fips"=>"08013",
+                              "latitude"=>40.017487,
+                              "longitude"=>-105.281952,
+                              "return_code"=>"1",
+                              "dpbc"=>"99",
+                              "dpv_confirmation_indicator"=>"S",
+                              "in_city"=>"Boulder",
+                              "in_state"=>"CO",
+                              "in_street_address"=>"1035 pearl st # 323",
+                              "in_zip"=>"80302",
+                              "post_directional"=>"",
+                              "pre_directional"=>"",
+                              "state_number"=>"08",
+                              "street_name"=>"PEARL",
+                              "street_number"=>"1035",
+                              "street_suffix"=>"ST",
+                              "unit_number"=>"323",
+                              "unit_type"=>"#",
+                              "zip_4"=>"5130",
+                              "zip_5"=>"80302"}
 ```
 
+## City County method
+
 ```ruby
-response => {"address_type"=>"H",
-             "census_block"=>"3035",
-             "census_tract"=>"012204",
-             "street_address"=>"1035 Pearl St # 323",
-             "city"=>"Boulder",
-             "state"=>"CO",
-             "zip_9"=>"80302-5130",
-             "search_key"=>"80302513099#323",
-             "county_name"=>"Boulder",
-             "county_number"=>"013",
-             "fips"=>"08013",
-             "latitude"=>40.017487,
-             "longitude"=>-105.281952,
-             "return_code"=>"1",
-             "dpbc"=>"99",
-             "dpv_confirmation_indicator"=>"S",
-             "in_city"=>"Boulder",
-             "in_state"=>"CO",
-             "in_street_address"=>"1035 pearl st # 323",
-             "in_zip"=>"80302",
-             "post_directional"=>"",
-             "pre_directional"=>"",
-             "state_number"=>"08",
-             "street_name"=>"PEARL",
-             "street_number"=>"1035",
-             "street_suffix"=>"ST",
-             "unit_number"=>"323",
-             "unit_type"=>"#",
-             "zip_4"=>"5130",
-             "zip_5"=>"80302"}
+response = cass.city_county params
+
+parsed_response = JSON.parse(response.body)
+```
+
+### Example
+
+```ruby
+response = cass.city_county(zip: "80302")
+
+JSON.parse(response.body) => {"city"=>"BOULDER",
+                              "state"=>"CO",
+                              "zip"=>"80302",
+                              "county_name"=>"BOULDER",
+                              "county_number"=>"013",
+                              "return_code"=>"0"}
 ```
 
 ## Contributing
