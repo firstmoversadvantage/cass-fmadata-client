@@ -14,7 +14,7 @@ module CassClient
 
     def headers
       {
-        'Token' => @token
+        'Token': @token
       }
     end
 
