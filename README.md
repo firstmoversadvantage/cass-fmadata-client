@@ -23,6 +23,8 @@ gem 'cass-fmadata-client', '0.0.5',
 From your application set up connection:
 
 ```ruby
+require 'cass_fmadata_client'
+
 cass = Casss::Client.new(host:  host,
                          token: token)
 ```
