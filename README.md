@@ -100,6 +100,129 @@ JSON.parse(response.body) => {"city"=>"BOULDER",
                               "return_code"=>"0"}
 ```
 
+## Search by Address method
+
+```ruby
+response = cass.search_by_address params
+
+parsed_response = JSON.parse(response.body)
+```
+
+### Example
+
+```ruby
+response = cass.search_by_address(street_address: '1035 Pearl St Ste 323',
+                                  city: 'Boulder',
+                                  state: 'CO',
+                                  zip: '80302')
+
+JSON.parse(response.body) => {"street_address"=>"1035 Pearl St # 323",
+                              "city"=>"Boulder",
+                              "state"=>"CO",
+                              "zip_9"=>"80302-5130",
+                              "search_key"=>"80302513099#323",
+                              "county_name"=>"Boulder",
+                              "county_number"=>"013",
+                              "fips"=>"08013",
+                              "return_code"=>"1"}
+
+## State County method
+
+```ruby
+response = cass.state_county params
+
+parsed_response = JSON.parse(response.body)
+```
+
+### Example
+
+```ruby
+response = cass.state_county(state: 'CO')
+
+JSON.parse(response.body) => {"county_names"=>{"001"=>"ADAMS",
+                                               "003"=>"ALAMOSA",
+                                               "005"=>"ARAPAHOE",
+                                               "007"=>"ARCHULETA",
+                                               "009"=>"BACA",
+                                               "011"=>"BENT",
+                                               "013"=>"BOULDER",
+                                               "014"=>"BROOMFIELD",
+                                               "015"=>"CHAFFEE",
+                                               "017"=>"CHEYENNE",
+                                               "019"=>"CLEAR CREEK",
+                                               "021"=>"CONEJOS",
+                                               "023"=>"COSTILLA",
+                                               "025"=>"CROWLEY",
+                                               "027"=>"CUSTER",
+                                               "029"=>"DELTA",
+                                               "031"=>"DENVER",
+                                               "033"=>"DOLORES",
+                                               "035"=>"DOUGLAS",
+                                               "037"=>"EAGLE",
+                                               "039"=>"ELBERT",
+                                               "041"=>"EL PASO",
+                                               "043"=>"FREMONT",
+                                               "045"=>"GARFIELD",
+                                               "047"=>"GILPIN",
+                                               "049"=>"GRAND",
+                                               "051"=>"GUNNISON",
+                                               "053"=>"HINSDALE",
+                                               "055"=>"HUERFANO",
+                                               "057"=>"JACKSON",
+                                               "059"=>"JEFFERSON",
+                                               "061"=>"KIOWA",
+                                               "063"=>"KIT CARSON",
+                                               "065"=>"LAKE",
+                                               "067"=>"LA PLATA",
+                                               "069"=>"LARIMER",
+                                               "071"=>"LAS ANIMAS",
+                                               "073"=>"LINCOLN",
+                                               "075"=>"LOGAN",
+                                               "077"=>"MESA",
+                                               "079"=>"MINERAL",
+                                               "081"=>"MOFFAT",
+                                               "083"=>"MONTEZUMA",
+                                               "085"=>"MONTROSE",
+                                               "087"=>"MORGAN",
+                                               "089"=>"OTERO",
+                                               "091"=>"OURAY",
+                                               "093"=>"PARK",
+                                               "095"=>"PHILLIPS",
+                                               "097"=>"PITKIN",
+                                               "099"=>"PROWERS",
+                                               "101"=>"PUEBLO",
+                                               "103"=>"RIO BLANCO",
+                                               "105"=>"RIO GRANDE",
+                                               "107"=>"ROUTT",
+                                               "109"=>"SAGUACHE",
+                                               "111"=>"SAN JUAN",
+                                               "113"=>"SAN MIGUEL",
+                                               "115"=>"SEDGWICK",
+                                               "117"=>"SUMMIT",
+                                               "119"=>"TELLER",
+                                               "121"=>"WASHINGTON",
+                                               "123"=>"WELD",
+                                               "125"=>"YUMA"}}
+
+
+## Zip City State method
+
+```ruby
+response = cass.zip_city_state params
+
+parsed_response = JSON.parse(response.body)
+```
+
+### Example
+
+```ruby
+response = cass.zip_city_state(city: 'Boulder',
+                               state: 'CO')
+
+JSON.parse(response.body) => {"zip"=>nil}
+```
+
+
 ## Contributing
 Contact: http://www.firstmoversadvantage.com
 
