@@ -125,6 +125,7 @@ JSON.parse(response.body) => {"street_address"=>"1035 Pearl St # 323",
                               "county_number"=>"013",
                               "fips"=>"08013",
                               "return_code"=>"1"}
+```
 
 ## State County method
 
@@ -204,6 +205,7 @@ JSON.parse(response.body) => {"county_names"=>{"001"=>"ADAMS",
                                                "123"=>"WELD",
                                                "125"=>"YUMA"}}
 
+```
 
 ## Zip City State method
 
