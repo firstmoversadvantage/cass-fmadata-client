@@ -5,6 +5,6 @@ require 'dotenv/load'
 require 'net/http'
 require 'json'
 
-module Casss
+module CassFma
   class Client < CassClient::Base; end
 end
