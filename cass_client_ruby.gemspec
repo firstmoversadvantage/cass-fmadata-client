@@ -8,7 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'brian.long@firstmoversadvantage.com'
   s.files       = ['lib/cass_fmadata_client.rb',
                    'lib/cass_fmadata_client/base.rb',
-                   'lib/cass_fmadata_client/loggable.rb',
                    'lib/cass_fmadata_client/connection.rb']
   s.homepage    = 'http://www.firstmoversadvantage.com/'
   s.license     = 'MIT'

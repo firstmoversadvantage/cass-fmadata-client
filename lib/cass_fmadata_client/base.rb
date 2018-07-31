@@ -1,7 +1,6 @@
 module CassClient
   class Base
     include Connection
-    include Loggable
 
     def initialize(p={})
       setup_connection(p)
