@@ -11,8 +11,8 @@ WebMock.disable_net_connect!(:allow_localhost => true)
 
 class CassClientTest < Minitest::Test
   def test_initialize_cass_client
-    Cass::Client.new(:host  => ENV['CASS_URL'],
-                     :token => ENV['CASS_TOKEN'])
+    CassFma::Client.new(:host  => ENV['CASS_URL'],
+                        :token => ENV['CASS_TOKEN'])
   end
 
   def test_tiger_method
