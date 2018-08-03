@@ -100,4 +100,23 @@ class CassClientTest < Minitest::Test
     response = client.zip_city_state(params)
     assert_equal response.code, '200'
   end
+
+  def test_address_method
+    client = test_initialize_cass_client
+
+    params =  { "city": "Boulder",
+                "state": "CO",
+                "street_address": "2950 N Lakeridge Trl",
+                "zip": "80302" }
+
+    stub_request(:get, ENV['CASS_URL'] + 'address/?city=Boulder&state=CO&street_address=2950+N+Lakeridge+Trl&zip=80302').
+      with(headers: {'Accept':          '*/*',
+                     'Accept-Encoding': 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                     'Token':           ENV['CASS_TOKEN'],
+                     'User-Agent':      'Ruby'}).
+      to_return(status: 200, body: "", headers: {})
+
+    response = client.address(params)
+    assert_equal response.code, '200'
+  end
 end

@@ -26,6 +26,10 @@ module CassClient
       send_request(p, zip_city_state_url)
     end
 
+    def address(p = {})
+      send_request(p, address_url)
+    end
+
     private
 
     def prepare_url(p, url)
@@ -65,6 +69,10 @@ module CassClient
 
     def zip_city_state_url
       @host + 'zip-city-state/'
+    end
+
+    def address_url
+      @host + 'address/'
     end
   end
 end

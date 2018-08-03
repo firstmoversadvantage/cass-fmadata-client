@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'cass-fmadata-client'
-  s.version     = '0.0.1'
+  s.version     = '1.0.0'
   s.date        = '2018-04-20'
   s.summary     = 'Client for CASS API'
   s.description = 'Client for CASS API'
