@@ -9,13 +9,12 @@ This gem is a client library for [cass.fmadata.com](cass.fmadata.com) API
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'cass-fmadata-client', '0.0.1', git: 'git://github.com/firstmoversadvantage/cass-fmadata-client.git',
-                              branch: 'stage-client'
+gem 'cass-fmadata-client', '1.0.0', git: 'git://github.com/firstmoversadvantage/cass-fmadata-client.git'
 ```
 
 For Ruby 1.8.7:
 ```ruby
-gem 'cass-fmadata-client', '0.0.5',
+gem 'cass-fmadata-client', '1.0.0',
                            :git => 'git://github.com/firstmoversadvantage/cass-fmadata-client.git',
                            :branch => '1.8-version'
 ```
@@ -221,10 +220,61 @@ parsed_response = JSON.parse(response.body)
 response = cass.zip_city_state(city: 'Boulder',
                                state: 'CO')
 
-JSON.parse(response.body) => {"zip"=>nil}
+JSON.parse(response.body) => { "zip"=> ["80301",
+                                        "80302",
+                                        "80303",
+                                        "80304",
+                                        "80305",
+                                        "80306",
+                                        "80307",
+                                        "80308",
+                                        "80309",
+                                        "80310",
+                                        "80314"] }
 ```
 
+## Address method
 
+```ruby
+response = cass.address params
+
+parsed_response = JSON.parse(response.body)
+```
+
+### Example
+
+```ruby
+response = cass.address(street_address: '1035 Pearl St Ste 323',
+                        city: 'Boulder',
+                        state: 'CO',
+                        zip: '80302')
+
+JSON.parse(response.body) => { "street_suffix"=>"TRL",
+                               "fips"=>"08013",
+                               "in_state"=>"CO",
+                               "state"=>"CO",
+                               "unit_type"=>"",
+                               "street_number"=>"2950",
+                               "county_name"=>"Boulder",
+                               "dpv_confirmation_indicator"=>"Y",
+                               "return_code"=>1,
+                               "zip_4"=>"9310",
+                               "zip_5"=>"80302",
+                               "zip_9"=>"80302-9310",
+                               "in_city"=>"Boulder",
+                               "street_name"=>"LAKERIDGE",
+                               "unit_number"=>"",
+                               "pre_directional"=>"N",
+                               "dpbc"=>"50",
+                               "in_street_address"=>"2950 n lakeridge trl",
+                               "county_number"=>"013",
+                               "post_directional"=>"",
+                               "street_address"=>"2950 N Lakeridge Trl",
+                               "address_type"=>"S",
+                               "city"=>"Boulder",
+                               "in_zip"=>"80302",
+                               "search_key"=>"80302931050"}
+```
 ## Contributing
 Contact: http://www.firstmoversadvantage.com
 
