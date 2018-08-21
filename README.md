@@ -206,10 +206,10 @@ JSON.parse(response.body) => {"county_names"=>{"001"=>"ADAMS",
 
 ```
 
-## Zip City State method
+## City Zip method
 
 ```ruby
-response = cass.zip_city_state params
+response = cass.city_zip params
 
 parsed_response = JSON.parse(response.body)
 ```
@@ -217,20 +217,23 @@ parsed_response = JSON.parse(response.body)
 ### Example
 
 ```ruby
-response = cass.zip_city_state(city: 'Boulder',
-                               state: 'CO')
+response = cass.city_zip(city: 'Boulder',
+                         state: 'CO')
 
-JSON.parse(response.body) => { "zip"=> ["80301",
-                                        "80302",
-                                        "80303",
-                                        "80304",
-                                        "80305",
-                                        "80306",
-                                        "80307",
-                                        "80308",
-                                        "80309",
-                                        "80310",
-                                        "80314"] }
+JSON.parse(response.body) => { "zips"=> ["80301",
+                                         "80302",
+                                         "80303",
+                                         "80304",
+                                         "80305",
+                                         "80306",
+                                         "80307",
+                                         "80308",
+                                         "80309",
+                                         "80310",
+                                         "80314"],
+                               "state"=>"CO",
+                               "city"=>"Boulder",
+                               "return_code"=>"11" }
 ```
 
 ## Address method

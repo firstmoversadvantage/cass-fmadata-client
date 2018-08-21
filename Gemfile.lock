@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cass-fmadata-client (0.0.1)
+    cass-fmadata-client (1.0.1)
       dotenv
       webmock
 
@@ -20,7 +20,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    public_suffix (3.0.2)
+    public_suffix (3.0.3)
     safe_yaml (1.0.4)
     slop (3.6.0)
     webmock (3.4.2)
@@ -36,4 +36,4 @@ DEPENDENCIES
   pry
 
 BUNDLED WITH
-   1.15.3
+   1.16.1
