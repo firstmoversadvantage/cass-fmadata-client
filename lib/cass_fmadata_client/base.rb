@@ -46,7 +46,12 @@ module CassClient
       request = Net::HTTP::Get.new(uri)
       request["Token"] = @token
 
-      Net::HTTP.start(uri.hostname, uri.port) do |http|
+      req_options = {
+        use_ssl: uri.scheme == "https",
+      }
+
+
+      Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
         http.request(request)
       end
     end
