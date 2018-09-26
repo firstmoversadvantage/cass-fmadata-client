@@ -38,7 +38,12 @@ module CassClient
       query_url = "#{uri.path}?".concat(p.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&'))
       req = Net::HTTP::Get.new(query_url)
       req["Token"] = @token
-      res = Net::HTTP.start(uri.host, uri.port) { |http|
+
+      req_options = {
+        use_ssl: uri.scheme == "https",
+      }
+
+      res = Net::HTTP.start(uri.host, uri.port, req_options) { |http|
         http.request(req)
        }
     end
