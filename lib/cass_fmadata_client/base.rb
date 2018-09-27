@@ -39,13 +39,33 @@ module CassClient
       req = Net::HTTP::Get.new(query_url)
       req["Token"] = @token
 
-      req_options = {
-        :use_ssl => uri.scheme == "https",
-      }
+      https = Net::HTTP.new(uri.host, uri.port)
+      https.use_ssl = true
+      resp = https.start { |http| http.request(req) }
 
-      res = Net::HTTP.start(uri.host, uri.port, req_options) { |http|
+      res = start(uri.host, uri.port, :use_ssl => true) { |http|
         http.request(req)
        }
+    end
+
+    def start(address, *arg, &block) # :yield: +http+
+      arg.pop if opt = Hash.try_convert(arg[-1])
+      port, p_addr, p_port, p_user, p_pass = *arg
+      port = https_default_port if !port && opt && opt[:use_ssl]
+      http = Net::HTTP.new(address, port, p_addr, p_port, p_user, p_pass)
+
+      if opt
+        http.cert_store = OpenSSL::X509::Store.new.tap { |store| store.set_default_paths }
+
+        # opt = {verify_mode: OpenSSL::SSL::VERIFY_PEER}.update(opt) if opt[:use_ssl]
+        http.methods.grep(/\A(\w+)=\z/) do |meth|
+          key = $1.to_sym
+          opt.key?(key) or next
+          http.__send__(meth, opt[key])
+        end
+      end
+
+      http.start(&block)
     end
 
     def tiger_url
