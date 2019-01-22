@@ -8,7 +8,8 @@ module CassClient
     DEFAULT_VERSION = '/api'.freeze
     # retry logic defaults:
     DEFAULT_MAX_RETRIES = 5
-    DEFAULT_RETRY_INTERVAL = 5
+    # retry interval in seconds
+    DEFAULT_RETRY_INTERVAL = 3
 
     def setup_connection(p = {})
       @host           = p[:host]            || DEFAULT_URL
@@ -27,5 +28,4 @@ module CassClient
       URI.parse(@host).to_s
     end
   end
-
 end
