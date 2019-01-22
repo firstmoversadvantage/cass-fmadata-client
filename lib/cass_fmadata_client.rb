@@ -6,4 +6,5 @@ require 'json'
 
 module CassFma
   class Client < CassClient::Base; end
+  class BadResponseError < StandardError; end
 end
