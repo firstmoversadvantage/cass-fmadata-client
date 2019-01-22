@@ -50,10 +50,24 @@ module CassClient
         use_ssl: uri.scheme == "https",
       }
 
-
-      Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-        http.request(request)
+      try_number = 0
+      begin
+        Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+          response = http.request(request)
+          raise CassFma::BadResponseError, response.class.name unless response.kind_of? Net::HTTPSuccess
+          response
+        end
+      rescue CassFma::BadResponseError => e
+        try_number += 1
+        raise update_error_message(e) and return if try_number > @max_retries
+        sleep @retry_interval
+        retry
       end
+    end
+
+    def update_error_message(e)
+      e.message << ' (MAX_RETRIES reached)'
+      e
     end
 
     def tiger_url
