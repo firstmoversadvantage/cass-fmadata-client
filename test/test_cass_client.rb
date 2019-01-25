@@ -7,6 +7,7 @@ require 'pry'
 require 'webmock'
 include WebMock::API
 WebMock.disable_net_connect!(allow_localhost: true)
+# Stubbing requests works with ruby 2.2.4 (I had troubles with other versions)
 
 class CassClientTest < Minitest::Test
   def test_initialize_cass_client
@@ -146,7 +147,7 @@ class CassClientTest < Minitest::Test
   end
 
 
-  def test_retry_logic_bat_gateway
+  def test_retry_logic_bad_gateway
     client = CassFma::Client.new(host:  ENV['CASS_URL'],
                                  token: ENV['CASS_TOKEN'],
                                  max_retries: 3,
