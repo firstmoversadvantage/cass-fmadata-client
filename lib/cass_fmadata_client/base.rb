@@ -39,13 +39,23 @@ module CassClient
       req = Net::HTTP::Get.new(query_url)
       req["Token"] = @token
 
-      https = Net::HTTP.new(uri.host, uri.port)
-      https.use_ssl = true
-      resp = https.start { |http| http.request(req) }
+      try_number = 0
+      begin
+        res = start(uri.host, uri.port, :use_ssl => true) do |http|
+          response = http.request(req)
 
-      res = start(uri.host, uri.port, :use_ssl => true) { |http|
-        http.request(req)
-       }
+          # raise error if the response is other than Success
+          raise CassFma::BadResponseError, response.class.name unless response.kind_of? Net::HTTPSuccess
+          response
+        end
+      rescue CassFma::BadResponseError => e
+        try_number += 1
+
+        # raise an error if max retries reached - it's neccessary to inform a client that there are still some issue
+        raise update_error_message(e) and return if try_number > @max_retries
+        sleep @retry_interval
+        retry
+      end
     end
 
     def start(address, *arg, &block) # :yield: +http+
