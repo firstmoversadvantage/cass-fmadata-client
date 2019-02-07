@@ -41,7 +41,7 @@ module CassClient
 
       try_number = 0
       begin
-        res = start(uri.host, uri.port, :use_ssl => true) do |http|
+        start(uri.host, uri.port, :use_ssl => true) do |http|
           response = http.request(req)
 
           # raise error if the response is other than Success
@@ -76,6 +76,12 @@ module CassClient
       end
 
       http.start(&block)
+    end
+
+    # Add some more specific info to error message
+    def update_error_message(e)
+      e.message << ' (MAX_RETRIES reached)'
+      e
     end
 
     def tiger_url
