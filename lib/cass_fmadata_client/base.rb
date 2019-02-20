@@ -61,7 +61,7 @@ module CassClient
     end
 
     def start(address, *arg, &block) # :yield: +http+
-      arg.pop if opt = Hash.try_convert(arg[-1])
+      arg.pop if arg[-1].respond_to?(:to_hash) && opt = arg[-1].to_hash
       port, p_addr, p_port, p_user, p_pass = *arg
       port = https_default_port if !port && opt && opt[:use_ssl]
       http = Net::HTTP.new(address, port, p_addr, p_port, p_user, p_pass)
