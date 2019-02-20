@@ -1,3 +1,5 @@
+require 'cgi'
+
 module CassClient
   class Base
     include Connection

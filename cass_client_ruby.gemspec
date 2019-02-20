@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.add_development_dependency 'pry'
   s.add_development_dependency 'minitest'
-  s.add_runtime_dependency 'webmock'
+  s.add_runtime_dependency 'webmock', "<= 1.24.6"
   s.add_runtime_dependency 'dotenv', "<= 1.1"
   s.add_development_dependency "appraisal"
 end
