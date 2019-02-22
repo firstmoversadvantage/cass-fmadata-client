@@ -3,12 +3,14 @@ PATH
   specs:
     cass-fmadata-client (1.0.4)
       dotenv (<= 1.1)
+      hashdiff (~> 0.2.2)
+      json
       webmock (<= 1.24.6)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.3.7)
+    addressable (2.3.8)
     appraisal (2.2.0)
       bundler
       rake
@@ -18,7 +20,7 @@ GEM
       safe_yaml (~> 1.0.0)
     dotenv (1.0.2)
     hashdiff (0.2.2)
-    json (1.8.6)
+    json (1.5.1)
     method_source (0.9.2)
     minitest (5.11.3)
     pry (0.9.12)
@@ -38,18 +40,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  addressable (<= 2.3.7)
   appraisal
   cass-fmadata-client!
-  hashdiff (<= 0.2.2)
-  json
   minitest
-  pry (<= 0.9.12)
-  rake (~> 10.0)
-  webmock (<= 1.24.6)
-
-RUBY VERSION
-   ruby 1.8.7p376
+  pry
 
 BUNDLED WITH
    1.16.1
