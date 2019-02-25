@@ -4,7 +4,6 @@ require 'dotenv'
 Dotenv.load
 require 'cass_fmadata_client'
 require 'pry'
-# require 'dotenv/load'
 require 'webmock'
 include WebMock::API
 WebMock.disable_net_connect!(:allow_localhost => true)
@@ -23,11 +22,8 @@ class CassClientTest < Minitest::Test
                 "street_address" => "2950 N Lakeridge Trl",
                 "zip" => "80302" }
 
-    stub_request(:get, ENV['CASS_URL'] + 'tiger/?city=Boulder&state=CO&street_address=2950+N+Lakeridge+Trl&zip=80302').
-      with(:headers => {'Accept' => '*/*',
-                     'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                     'Token'=> ENV['CASS_TOKEN'],
-                     'User-Agent' => 'Ruby'}).
+    stub_request(:get, "#{ENV['CASS_URL']}tiger/?city=Boulder&state=CO&street_address=2950%20N%20Lakeridge%20Trl&zip=80302").
+      with(:headers => {'Accept'=>'*/*', 'Token'=>ENV['CASS_TOKEN']}).
       to_return(:status => 200, :body => "", :headers => {})
 
     response = client.tiger(params)
@@ -40,10 +36,7 @@ class CassClientTest < Minitest::Test
     params =  { "zip" => "80302" }
 
     stub_request(:get, ENV['CASS_URL'] + 'city-county/?zip=80302').
-      with(:headers => {'Accept'=>'*/*',
-                     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                     'Token'=> ENV['CASS_TOKEN'],
-                     'User-Agent'=>'Ruby'}).
+      with(:headers => {'Accept'=>'*/*', 'Token'=> ENV['CASS_TOKEN']}).
       to_return(:status => 200, :body => "", :headers => {})
 
     response = client.city_county(params)
@@ -59,10 +52,7 @@ class CassClientTest < Minitest::Test
                 "zip" => "80302" }
 
     stub_request(:get, ENV['CASS_URL'] + 'search-by-address/?city=Boulder&state=CO&street_address=2950+N+Lakeridge+Trl&zip=80302').
-      with(:headers => {'Accept'=>'*/*',
-                     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                     'Token'=> ENV['CASS_TOKEN'],
-                     'User-Agent'=>'Ruby'}).
+      with(:headers => {'Accept'=>'*/*', 'Token'=> ENV['CASS_TOKEN']}).
       to_return(:status => 200, :body => "", :headers => {})
 
     response = client.search_by_address(params)
@@ -75,10 +65,7 @@ class CassClientTest < Minitest::Test
     params =  { "state" => "CO" }
 
     stub_request(:get, ENV['CASS_URL'] + 'state-county/?state=CO').
-      with(:headers => {'Accept'=>'*/*',
-                     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                     'Token'=> ENV['CASS_TOKEN'],
-                     'User-Agent'=>'Ruby'}).
+      with(:headers => {'Accept'=>'*/*', 'Token'=> ENV['CASS_TOKEN']}).
       to_return(:status => 200, :body => "", :headers => {})
 
     response = client.state_county(params)
@@ -92,10 +79,7 @@ class CassClientTest < Minitest::Test
                 "state" => "CO" }
 
     stub_request(:get, ENV['CASS_URL'] + 'city-zip/?city=Boulder&state=CO').
-      with(:headers => {'Accept'=>'*/*',
-                     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                     'Token'=> ENV['CASS_TOKEN'],
-                     'User-Agent'=>'Ruby'}).
+      with(:headers => {'Accept'=>'*/*', 'Token'=> ENV['CASS_TOKEN']}).
       to_return(:status => 200, :body => "", :headers => {})
 
     response = client.city_zip(params)
@@ -111,10 +95,7 @@ class CassClientTest < Minitest::Test
                 "zip" => "80302" }
 
     stub_request(:get, ENV['CASS_URL'] + 'address/?city=Boulder&state=CO&street_address=2950+N+Lakeridge+Trl&zip=80302').
-      with(:headers => {'Accept'=>'*/*',
-                     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                     'Token'=> ENV['CASS_TOKEN'],
-                     'User-Agent'=>'Ruby'}).
+      with(:headers => {'Accept'=>'*/*','Token'=> ENV['CASS_TOKEN']}).
       to_return(:status => 200, :body => "", :headers => {})
 
     response = client.address(params)
