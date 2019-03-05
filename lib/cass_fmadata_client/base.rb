@@ -69,7 +69,7 @@ module CassClient
       if opt
         http.cert_store = OpenSSL::X509::Store.new.tap { |store| store.set_default_paths }
 
-        # opt = {verify_mode: OpenSSL::SSL::VERIFY_PEER}.update(opt) if opt[:use_ssl]
+        opt = {:verify_mode => OpenSSL::SSL::VERIFY_PEER}.update(opt) if opt[:use_ssl]
         http.methods.grep(/\A(\w+)=\z/) do |meth|
           key = $1.to_sym
           opt.key?(key) or next
