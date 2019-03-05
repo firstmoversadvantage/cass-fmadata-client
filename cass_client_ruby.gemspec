@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name        = 'cass-fmadata-client'
-  s.version     = '1.0.5'
-  s.date        = '2019-02-25'
+  s.version     = '1.0.6'
+  s.date        = '2019-03-05'
   s.summary     = 'Client for CASS API'
   s.description = 'Client for CASS API'
-  s.authors     = ['Brian Long', 'Marta Wójtowicz', 'Paweł Jermalonek']
+  s.authors     = ['Brian Long', 'Marta Wójtowicz', 'Paweł Jermalonek', 'Ada Borzemska']
   s.email       = 'brian.long@firstmoversadvantage.com'
   s.files       = ['lib/cass_fmadata_client.rb',
                    'lib/cass_fmadata_client/base.rb',
