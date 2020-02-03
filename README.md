@@ -78,6 +78,17 @@ JSON.parse(response.body) => {"address_type"=>"H",
                               "zip_5"=>"80302"}
 ```
 
+### Return codes
+CASS return codes:
+1 - Match found; four-digit ZIP add-on assigned.
+\>1  - Multiple possible results, but no exact match made. Number of results is the value of return code.
+<0 - Multiple possible results only when error code contains 11; no exact match made. Number of results is the
+absolute value of the return code.
+-1 - When error code contains 07, delivery point validation failed; five-digit ZIP returned.
+-3 - When error code contains 05 - PO Box, Rural Route or Highway contract; street name normalized though
+no match found.
+-99 - No match found, and the original input has been returned.
+
 ## City County method
 
 ```ruby
@@ -98,6 +109,12 @@ JSON.parse(response.body) => {"city"=>"BOULDER",
                               "county_number"=>"013",
                               "return_code"=>"0"}
 ```
+
+### Return codes
+0 – completed successfully
+-2 – no valid license key
+-3 – trial expired
+-99 – no matches found
 
 ## Search by Address method
 
