@@ -78,8 +78,8 @@ JSON.parse(response.body) => {"address_type"=>"H",
                               "zip_5"=>"80302"}
 ```
 
-### Return codes
-CASS return codes:
+### Return code
+
 1 - Match found; four-digit ZIP add-on assigned.
 \>1  - Multiple possible results, but no exact match made. Number of results is the value of return code.
 <0 - Multiple possible results only when error code contains 11; no exact match made. Number of results is the
@@ -110,7 +110,8 @@ JSON.parse(response.body) => {"city"=>"BOULDER",
                               "return_code"=>"0"}
 ```
 
-### Return codes
+### Return code
+
 0 – completed successfully
 -2 – no valid license key
 -3 – trial expired
@@ -142,6 +143,17 @@ JSON.parse(response.body) => {"street_address"=>"1035 Pearl St # 323",
                               "fips"=>"08013",
                               "return_code"=>"1"}
 ```
+
+### Return codes
+
+1 - Match found; four-digit ZIP add-on assigned.
+\>1  - Multiple possible results, but no exact match made. Number of results is the value of return code.
+<0 - Multiple possible results only when error code contains 11; no exact match made. Number of results is the
+absolute value of the return code.
+-1 - When error code contains 07, delivery point validation failed; five-digit ZIP returned.
+-3 - When error code contains 05 - PO Box, Rural Route or Highway contract; street name normalized though
+no match found.
+-99 - No match found, and the original input has been returned.
 
 ## State County method
 
@@ -223,6 +235,10 @@ JSON.parse(response.body) => {"county_names"=>{"001"=>"ADAMS",
 
 ```
 
+### Return code
+
+Return code value is the total number of county names found.
+
 ## City Zip method
 
 ```ruby
@@ -252,6 +268,10 @@ JSON.parse(response.body) => { "zips"=> ["80301",
                                "city"=>"Boulder",
                                "return_code"=>"11" }
 ```
+### Return code
+
+Return code value is the total number of county names found.
+Negative return code indicates invalid license conditions.
 
 ## Address method
 
@@ -295,6 +315,18 @@ JSON.parse(response.body) => { "street_suffix"=>"TRL",
                                "in_zip"=>"80302",
                                "search_key"=>"80302931050"}
 ```
+
+### Return code
+
+1 - Match found; four-digit ZIP add-on assigned.
+\>1  - Multiple possible results, but no exact match made. Number of results is the value of return code.
+<0 - Multiple possible results only when error code contains 11; no exact match made. Number of results is the
+absolute value of the return code.
+-1 - When error code contains 07, delivery point validation failed; five-digit ZIP returned.
+-3 - When error code contains 05 - PO Box, Rural Route or Highway contract; street name normalized though
+no match found.
+-99 - No match found, and the original input has been returned.
+
 ## Contributing
 Contact: http://www.firstmoversadvantage.com
 
