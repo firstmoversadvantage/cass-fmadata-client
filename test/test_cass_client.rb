@@ -4,12 +4,11 @@ require 'dotenv'
 Dotenv.load
 require 'cass_fmadata_client'
 require 'pry'
-require 'webmock'
-include WebMock::API
-WebMock.disable_net_connect!(allow_localhost: true)
-# Stubbing requests works with ruby 2.2.4 (I had troubles with other versions)
+require 'webmock/minitest'
+WebMock.disable_net_connect!
 
 class CassClientTest < Minitest::Test
+
   def test_initialize_cass_client
     CassFma::Client.new(host:  ENV['CASS_URL'],
                         token: ENV['CASS_TOKEN'])
@@ -66,6 +65,7 @@ class CassClientTest < Minitest::Test
       to_return(status: 200, body: "", headers: {})
 
     response = client.search_by_address(params)
+    
     assert_equal response.code, '200'
   end
 
@@ -116,8 +116,9 @@ class CassClientTest < Minitest::Test
                      'Token':           ENV['CASS_TOKEN'],
                      'User-Agent':      'Ruby'}).
       to_return(status: 200, body: "", headers: {})
-
+        
     response = client.address(params)
+
     assert_equal response.code, '200'
   end
 
