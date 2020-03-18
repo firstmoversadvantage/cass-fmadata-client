@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://www.firstmoversadvantage.com/'
   s.license     = 'MIT'
   s.add_development_dependency 'pry'
-  s.add_runtime_dependency 'webmock'
-  s.add_runtime_dependency 'dotenv'
+  s.add_development_dependency 'webmock', '~> 3.8.3'
+  s.add_runtime_dependency 'dotenv', '~> 2.7.5'
 end

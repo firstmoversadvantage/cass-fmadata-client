@@ -1,9 +1,8 @@
 PATH
   remote: .
   specs:
-    cass-fmadata-client (1.0.5)
-      dotenv
-      webmock
+    cass-fmadata-client (1.0.7)
+      dotenv (~> 2.7.5)
 
 GEM
   remote: https://rubygems.org/
@@ -32,6 +31,7 @@ PLATFORMS
 DEPENDENCIES
   cass-fmadata-client!
   pry
+  webmock (~> 3.8.3)
 
 BUNDLED WITH
    2.1.4
