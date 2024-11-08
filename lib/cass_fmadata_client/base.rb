@@ -64,17 +64,17 @@ module CassClient
         try_number += 1
 
         # raise an error if max retries reached - it's neccessary to inform a client that there
-        # still is some issue
-        raise update_error_message(e) and return if try_number > @max_retries
+        # still is some issue with the service
+        raise(e, custom_error_message(e)) if try_number > @max_retries
+
         sleep @retry_interval
         retry
       end
     end
 
     # Add some more specifically info to error message
-    def update_error_message(e)
-      e.message << ' (MAX_RETRIES reached)'
-      e
+    def custom_error_message(e)
+      "#{e.message} (MAX_RETRIES reached)"
     end
 
     def tiger_url
