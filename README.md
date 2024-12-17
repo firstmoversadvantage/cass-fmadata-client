@@ -1,7 +1,7 @@
 # cass-fmadata-client
-Public Ruby gem for cass.fmadata.com
+Public Ruby gem for cass2.fmadata.com
 
-This gem is a client library for [cass.fmadata.com](cass.fmadata.com) API
+This gem is a client library for [cass2.fmadata.com](https://cass2.fmadata.com/) API
 
 # Usage
 
@@ -9,14 +9,7 @@ This gem is a client library for [cass.fmadata.com](cass.fmadata.com) API
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'cass-fmadata-client', '1.0.0', git: 'git://github.com/firstmoversadvantage/cass-fmadata-client.git'
-```
-
-For Ruby 1.8.7:
-```ruby
-gem 'cass-fmadata-client', '1.0.0',
-                           :git => 'git://github.com/firstmoversadvantage/cass-fmadata-client.git',
-                           :branch => '1.8-version'
+gem 'cass-fmadata-client', '~> 1.1.0', git: 'https://github.com/firstmoversadvantage/cass-fmadata-client.git'
 ```
 
 From your application set up connection:
@@ -278,8 +271,15 @@ JSON.parse(response.body) => { "street_suffix"=>"TRL",
                                "in_zip"=>"80302",
                                "search_key"=>"80302931050"}
 ```
+
+## Requirements
+Ruby 2.6 or later.
+
+## Testing
+Install all required gems (which are listed in .gemspec file) and run `rake test` in order to run tests.
+
 ## Contributing
-Contact: http://www.firstmoversadvantage.com
+Contact: [FMA](https://www.fmadata.com/)
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
